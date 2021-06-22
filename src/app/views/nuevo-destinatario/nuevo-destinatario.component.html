@@ -1,0 +1,110 @@
+<mat-card class="example-card">
+  <mat-card-title style="text-align: center">{{ title }}</mat-card-title>
+  <div class="example-container">
+    <div class="form-container">
+      <form class="form-horizontal" [formGroup]="destinatarioForm" (submit)="submit()">
+
+        <mat-grid-list cols="2" rowHeight="5:1">
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Nombre
+              </mat-label>
+              <input matInput formControlName="nombre" required>
+              <mat-error *ngIf="destinatarioForm.controls.nombre.touched && destinatarioForm.controls.nombre.invalid">
+                <span *ngIf="destinatarioForm.controls.nombre.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> RUT
+              </mat-label>
+              <input matInput formControlName="rut" required>
+              <mat-error *ngIf="destinatarioForm.controls.rut.touched && destinatarioForm.controls.rut.invalid">
+                <span *ngIf="destinatarioForm.controls.rut.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> E-mail
+              </mat-label>
+              <input matInput formControlName="email" required>
+              <mat-error *ngIf="destinatarioForm.controls.email.touched && destinatarioForm.controls.email.invalid">
+                <span *ngIf="destinatarioForm.controls.email.errors.required">El campo es requerido.</span>
+                <span *ngIf="destinatarioForm.controls.email.errors.pattern">El valor es invalido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Teléfono
+              </mat-label>
+              <input matInput formControlName="telefono" required>
+              <mat-error
+                *ngIf="destinatarioForm.controls.telefono.touched && destinatarioForm.controls.telefono.invalid">
+                <span *ngIf="destinatarioForm.controls.telefono.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Banco Destino
+              </mat-label>
+              <input matInput formControlName="banco" required>
+              <mat-error *ngIf="destinatarioForm.controls.banco.touched && destinatarioForm.controls.banco.invalid">
+                <span *ngIf="destinatarioForm.controls.banco.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Tipo de cuenta
+              </mat-label>
+              <input matInput formControlName="tipoCuenta" required>
+              <mat-error
+                *ngIf="destinatarioForm.controls.tipoCuenta.touched && destinatarioForm.controls.tipoCuenta.invalid">
+                <span *ngIf="destinatarioForm.controls.tipoCuenta.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+          <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Número de cuenta
+              </mat-label>
+              <input matInput formControlName="numCuenta" required>
+              <mat-error
+                *ngIf="destinatarioForm.controls.numCuenta.touched && destinatarioForm.controls.numCuenta.invalid">
+                <span *ngIf="destinatarioForm.controls.numCuenta.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+        </mat-grid-list>
+
+        <button mat-raised-button color="primary" type="submit">Agregar</button>
+      </form>
+    </div>
+  </div>
+</mat-card>

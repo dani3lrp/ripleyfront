@@ -1,0 +1,15 @@
+
+<mat-toolbar color="secundary">
+    <mat-toolbar-row>
+
+      <h1><i class="fab fa-linkedin"></i> {{ miNombre }}</h1>
+      <span class="menu-spacer"></span>
+      <div class="menu">
+        <a mat-button [routerLink]="'/accounts'"><i class="fab fa-github"></i> gitHub </a>
+        <a mat-button [routerLink]="'/create-account'"><i class="fas fa-server"></i> Heroku </a>
+        <a mat-button [routerLink]="'/contacts'"><i class="fas fa-info-circle"></i> Info </a>
+  
+      </div>
+    </mat-toolbar-row>
+
+  </mat-toolbar>

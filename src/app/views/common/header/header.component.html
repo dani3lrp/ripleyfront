@@ -1,0 +1,16 @@
+<mat-toolbar class="mat-elevation-z6" color="secundary">
+    <mat-toolbar-row>
+
+      <h1>Mi Banco - {{ title }}</h1>
+      <span class="menu-spacer"></span>
+      <div class="menu">
+        <a mat-button [routerLink]="'/Login'"><i class="fas fa-sign-out-alt"></i> Log Out </a>
+        <a mat-button [routerLink]="'/nuevoDestinatario'"><i class="fas fa-user-plus"></i> Nuevo destrinatario</a>
+        <a mat-button [routerLink]="'/ListaDestinatarios'"><i class="fas fa-user-friends"></i> Lista de destinatarios </a>
+        <a mat-button [routerLink]="'/Transferir'"><i class="fas fa-hand-holding-usd"></i> Transferir </a>
+        <a mat-button [routerLink]="'/Movimientos'"><i class="fas fa-file-invoice-dollar"></i> Movimientos </a>
+  
+      </div>
+    </mat-toolbar-row>
+
+  </mat-toolbar>

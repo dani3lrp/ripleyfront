@@ -1,0 +1,23 @@
+.example-container{
+    text-align: center;
+
+}
+
+.form-container{
+    width: 400 px; 
+    margin: 0 px auto; 
+    margin-top: 200 px
+}
+
+.form-field{
+    display: block;
+    /* display: inline-block; */
+}
+
+.example-card {
+    max-width: 680px;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
