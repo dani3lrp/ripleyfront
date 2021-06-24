@@ -10,7 +10,7 @@ import { MessageService } from './message.service';
 })
 export class MovimientoService {
 
-  private clienteURL: string = 'http://apibancoripley.herokuapp.com/api/cliente';
+  private clienteURL: string = 'https://apibancoripley.herokuapp.com/api/cliente';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
