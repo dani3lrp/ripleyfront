@@ -5,12 +5,14 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 
+import { Banco, Bank } from '../models/banco';
+
 @Injectable({
   providedIn: 'root'
 })
-export class MovimientoService {
+export class ListaBancosService {
 
-  private clienteURL: string = 'http://apibancoripley.herokuapp.com/api/cliente';
+  private bancosURL: string = 'https://bast.dev/api/banks.php';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,11 +22,11 @@ export class MovimientoService {
     private http: HttpClient,
     private messageService: MessageService
     ) { 
-      this.getCliente();
+      this.getBancos();
     }
 
-    getCliente(): Observable<any>{
-      return this.http.get(this.clienteURL)
+    getBancos(): Observable<any>{
+      return this.http.get(this.bancosURL)
       .pipe(
         catchError(this.handleError<any>('getBancos', []))
       );

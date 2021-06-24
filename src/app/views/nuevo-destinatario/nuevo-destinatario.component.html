@@ -65,7 +65,11 @@
             <mat-form-field class="form-field" appearance="standard">
               <mat-label> Banco Destino
               </mat-label>
-              <input matInput formControlName="banco" required>
+                <mat-select>
+                  <mat-option *ngFor="let banco of _bancos" [value]="banco">
+                    {{banco}}
+                  </mat-option>
+                </mat-select>
               <mat-error *ngIf="destinatarioForm.controls.banco.touched && destinatarioForm.controls.banco.invalid">
                 <span *ngIf="destinatarioForm.controls.banco.errors.required">El campo es requerido.</span>
               </mat-error>

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Banco, Bank } from './../../models/banco';
+import { Component, OnInit, TestabilityRegistry } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import * as validarRUT from '../../util/validarRUT';
+
+import { ListaBancosService } from '../../services/lista-bancos.service';
 
 declare var validarRUT: any;
 
@@ -12,12 +15,14 @@ declare var validarRUT: any;
 export class NuevoDestinatarioComponent implements OnInit {
 
   title = "Nuevo destinatario"
+  _bancos: string[] = [];
 
   destinatarioForm: FormGroup;
   emailRegx = /^(([^<>+()\[\]\\.,;:\s@"-#$%&=]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,3}))$/;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private listaBancosService: ListaBancosService
   ) { }
 
   ngOnInit() {
@@ -30,6 +35,11 @@ export class NuevoDestinatarioComponent implements OnInit {
       tipoCuenta: [null, Validators.required],
       numCuenta: [null, Validators.required]
     });
+
+    this.getBancos();
+
+    console.log('Lista de bancos =>', this._bancos);
+
   }
 
   submit() {
@@ -37,6 +47,16 @@ export class NuevoDestinatarioComponent implements OnInit {
       return;
     }
     console.log(this.destinatarioForm.value);
+  }
+
+  getBancos(){
+    this.listaBancosService.getBancos().subscribe((data:Banco )=> {
+
+        for (let variable of data.banks) {  
+          this._bancos.push(variable['name'])
+        }
+
+    });
   }
 
   //https://palabrasalcierre.wordpress.com/2009/11/24/formateo-y-validacion-de-runjava-script/

@@ -1,3 +1,7 @@
+<mat-card class="example-card mat-elevation-z0">
+  <mat-card-title style="text-align: center">{{ title }}</mat-card-title>
+  <div class="example-container">
+
 <mat-form-field>
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
@@ -5,28 +9,28 @@
   
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <!-- nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> nombre. </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
     </ng-container>
   
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <!-- numCuenta Column -->
+    <ng-container matColumnDef="numCuenta">
+      <th mat-header-cell *matHeaderCellDef> numCuenta </th>
+      <td mat-cell *matCellDef="let element"> {{element.numCuenta}} </td>
     </ng-container>
   
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <!-- egresoIngreso Column -->
+    <ng-container matColumnDef="egresoIngreso">
+      <th mat-header-cell *matHeaderCellDef> egresoIngreso </th>
+      <td mat-cell *matCellDef="let element"> {{element.egresoIngreso}} </td>
     </ng-container>
   
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <!-- monto Column -->
+    <ng-container matColumnDef="monto">
+      <th mat-header-cell *matHeaderCellDef> monto </th>
+      <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
     </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -43,3 +47,15 @@
               [pageSize]="8"
               [pageSizeOptions]="[5, 10]">
 </mat-paginator>
+
+
+
+
+
+
+  </div>
+</mat-card>
+
+
+
+

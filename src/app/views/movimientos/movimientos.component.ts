@@ -1,12 +1,23 @@
+import { Cliente, Movimiento, Transaccion } from './../../models/cliente';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { MovimientoService } from 'src/app/services/movimiento.service';
+
 
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
+}
+
+export interface movimientoVista {
+  nombre: string;
+  numCuenta: string;
+  egresoIngreso: string;
+  monto: string;
+
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
@@ -29,19 +40,60 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class MovimientosComponent implements OnInit {
 
-  @ViewChild('paginator') paginator: MatPaginator;
+  title: string = 'Movimientos';
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  @ViewChild('paginator') paginator: MatPaginator;
+  _movimientos: movimientoVista[]=[];
+
+  displayedColumns: string[] = ['nombre', 'numCuenta', 'egresoIngreso', 'monto'];
+/*   dataSource = new MatTableDataSource(ELEMENT_DATA); */
+
+dataSource: any;
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  constructor() { }
+  constructor(
+    private movimientoService: MovimientoService
+
+  ) { }
 
   ngOnInit(): void {
+
+    this.getMovimientos();
+
+  }
+
+  getMovimientos(){
+    this.movimientoService.getCliente().subscribe((data:Cliente) => {
+
+      for (let variable of data[0].movimientos) {
+
+        let adx: movimientoVista = {nombre:'',numCuenta:'',egresoIngreso:'',monto:''};
+
+        adx.nombre = variable.destinatario.nombre;
+        adx.numCuenta = variable.destinatario.cuenta[0].numCuenta;
+        adx.egresoIngreso = variable.destinatario.cuenta[0].transaccion[0].egresoIngreso;
+        adx.monto = variable.destinatario.cuenta[0].transaccion[0].monto;
+
+        if( adx.monto !== ""){
+          this._movimientos.push(adx);
+        }
+
+      }
+
+      this.dataSource = new MatTableDataSource();
+      this.dataSource.data = this._movimientos;
+      this.dataSource.paginator = this.paginator;
+    },
+    error => {  
+      console.log('There was an error while retrieving Usuarios!' + error);
+
+    });
+
+    console.log('this._movimientos =>', this._movimientos)
   }
 
 }
