@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MovimientoService } from 'src/app/services/movimiento.service';
-
+import { MatSpinner } from '@angular/material/progress-spinner';
 
 export interface PeriodicElement {
   name: string;
@@ -40,6 +40,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ListaDestinatariosComponent implements OnInit {
 
   title: string = 'Destinatarios';
+  spinner: boolean = true;
 
   @ViewChild('paginator') paginator: MatPaginator;
   _destinatarios: destinatarioVista[] =[];
@@ -86,6 +87,7 @@ export class ListaDestinatariosComponent implements OnInit {
       this.dataSource = new MatTableDataSource();
       this.dataSource.data = this._destinatarios;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.data? this.spinner = false: this.spinner = true;
     },
     error => {  
       console.log('There was an error while retrieving Usuarios!' + error);

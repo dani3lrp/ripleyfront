@@ -41,6 +41,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class MovimientosComponent implements OnInit {
 
   title: string = 'Movimientos';
+  spinner: boolean = true;
 
   @ViewChild('paginator') paginator: MatPaginator;
   _movimientos: movimientoVista[]=[];
@@ -87,6 +88,7 @@ dataSource: any;
       this.dataSource = new MatTableDataSource();
       this.dataSource.data = this._movimientos;
       this.dataSource.paginator = this.paginator;
+      this.dataSource.data? this.spinner = false: this.spinner = true;
     },
     error => {  
       console.log('There was an error while retrieving Usuarios!' + error);
