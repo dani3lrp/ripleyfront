@@ -27,6 +27,7 @@
               <input matInput formControlName="rut" required>
               <mat-error *ngIf="destinatarioForm.controls.rut.touched && destinatarioForm.controls.rut.invalid">
                 <span *ngIf="destinatarioForm.controls.rut.errors.required">El campo es requerido.</span>
+                <span *ngIf="destinatarioForm.controls.rut.errors.pattern">El valor es invalido.</span>
               </mat-error>
             </mat-form-field>
 
@@ -65,7 +66,7 @@
             <mat-form-field class="form-field" appearance="standard">
               <mat-label> Banco Destino
               </mat-label>
-                <mat-select>
+                <mat-select formControlName="banco" required>
                   <mat-option *ngFor="let banco of _bancos" [value]="banco">
                     {{banco}}
                   </mat-option>
@@ -82,14 +83,31 @@
             <mat-form-field class="form-field" appearance="standard">
               <mat-label> Tipo de cuenta
               </mat-label>
-              <input matInput formControlName="tipoCuenta" required>
+                <mat-select formControlName="tipoCuenta" required>
+                  <mat-option *ngFor="let tipoCuenta of _tipoCuentas" [value]="tipoCuenta">
+                    {{tipoCuenta}}
+                  </mat-option>
+                </mat-select>
+              <mat-error *ngIf="destinatarioForm.controls.tipoCuenta.touched && destinatarioForm.controls.tipoCuenta.invalid">
+                <span *ngIf="destinatarioForm.controls.tipoCuenta.errors.required">El campo es requerido.</span>
+              </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+
+<!--           <mat-grid-tile>
+
+            <mat-form-field class="form-field" appearance="standard">
+              <mat-label> Tipo de cuenta
+              </mat-label>
+              <input type="text" matInput formControlName="tipoCuenta" autocomplete="off" required>
               <mat-error
                 *ngIf="destinatarioForm.controls.tipoCuenta.touched && destinatarioForm.controls.tipoCuenta.invalid">
                 <span *ngIf="destinatarioForm.controls.tipoCuenta.errors.required">El campo es requerido.</span>
               </mat-error>
             </mat-form-field>
 
-          </mat-grid-tile>
+          </mat-grid-tile> -->
 
           <mat-grid-tile>
 
@@ -107,7 +125,7 @@
 
         </mat-grid-list>
 
-        <button mat-raised-button color="primary" type="submit">Agregar</button>
+        <button mat-raised-button color="primary" type="submit" (click)="mostrarDialogo()" [disabled]="destinatarioForm.invalid">Agregar</button>
       </form>
     </div>
   </div>
